@@ -1,6 +1,6 @@
 # ActivityX Test file
 
-A Node.js Hello jkjWorld repository.
+A Node.js activity tracker
 
 ## Usage
 
