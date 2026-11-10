@@ -1,6 +1,6 @@
-# ActivityX
+# ActivityX Test file
 
-A Node.js Hello World repository.
+A Node.js Hello jkjWorld repository.
 
 ## Usage
 
