@@ -1,4 +1,9 @@
 # ActivityX
 
-A Hello World test repository.
+A Node.js Hello World repository.
 
+## Usage
+
+```bash
+node hello_world.js
+```
