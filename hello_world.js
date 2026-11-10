@@ -1,5 +1,6 @@
 function main() {
-    console.log("Hello, World! wassup den");
+    console.log("Welcome user to activity tracker 1.0.0");
 }
 
 main();
+
