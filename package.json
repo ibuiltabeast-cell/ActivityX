@@ -12,6 +12,6 @@
     "deploy:worker": "npm run build && npx wrangler deploy --config wrangler.worker.toml"
   },
   "devDependencies": {
-    "wrangler": "^3.111.0"
+    "wrangler": "^4.160.1"
   }
 }
