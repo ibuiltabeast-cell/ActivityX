@@ -1,0 +1,18 @@
+{
+  "name": "activity-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Activity & habit tracking web app packaged for Cloudflare Pages and Cloudflare Workers",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "wrangler pages dev public",
+    "dev:worker": "wrangler dev",
+    "deploy": "npm run build && wrangler pages deploy public --project-name=activity-tracker",
+    "deploy:worker": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}
+

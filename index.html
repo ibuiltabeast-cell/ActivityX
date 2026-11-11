@@ -20,9 +20,11 @@
           <p class="subtitle">Track your daily focus, habits, and tasks</p>
         </div>
       </div>
-      <button id="themeToggle" class="theme-btn" title="Toggle Dark/Light Mode">
-        <span id="themeIcon">🌙</span>
-      </button>
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-btn" title="Toggle Dark/Light Mode">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
     </header>
 
     <!-- Stats Overview -->
@@ -42,6 +44,44 @@
       <div class="stat-card">
         <span class="stat-label">Completion Rate</span>
         <span class="stat-value" id="statRate">0%</span>
+      </div>
+    </section>
+
+    <!-- Category Distribution Bar -->
+    <section class="card distribution-card">
+      <div class="dist-header">
+        <span class="dist-title">Category Time Breakdown</span>
+        <span id="totalHoursLabel" class="dist-total">0h 0m total</span>
+      </div>
+      <div class="progress-bar-container" id="distributionBar">
+        <!-- Colored progress segments injected via JS -->
+      </div>
+      <div class="category-legend" id="categoryLegend">
+        <!-- Legend items injected via JS -->
+      </div>
+    </section>
+
+    <!-- Focus Timer Widget (Live Stopwatch / Countdown) -->
+    <section class="card timer-card hidden" id="timerSection">
+      <div class="timer-header">
+        <div>
+          <span class="timer-badge">Active Focus Session</span>
+          <h3 id="timerActivityTitle" class="timer-title">Task Name</h3>
+        </div>
+        <button id="timerCloseBtn" class="icon-btn" title="Close timer">&times;</button>
+      </div>
+
+      <div class="timer-display-wrap">
+        <div class="timer-time" id="timerDisplay">25:00</div>
+        <div class="timer-progress-bg">
+          <div class="timer-progress-fill" id="timerProgressFill"></div>
+        </div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="timerStartBtn" class="timer-btn timer-btn-primary">▶ Start</button>
+        <button id="timerResetBtn" class="timer-btn timer-btn-secondary">↺ Reset</button>
+        <button id="timerCompleteBtn" class="timer-btn timer-btn-success">✓ Complete & Log</button>
       </div>
     </section>
 
@@ -76,15 +116,23 @@
 
             <div class="form-group">
               <label for="activityDuration">Duration (minutes)</label>
-              <input 
-                type="number" 
-                id="activityDuration" 
-                min="1" 
-                max="720" 
-                placeholder="30" 
-                value="30"
-                required 
-              />
+              <div class="duration-input-wrapper">
+                <input 
+                  type="number" 
+                  id="activityDuration" 
+                  min="1" 
+                  max="720" 
+                  placeholder="30" 
+                  value="30"
+                  required 
+                />
+              </div>
+              <div class="duration-chips">
+                <button type="button" class="preset-chip" data-time="15">+15m</button>
+                <button type="button" class="preset-chip" data-time="30">+30m</button>
+                <button type="button" class="preset-chip" data-time="45">+45m</button>
+                <button type="button" class="preset-chip" data-time="60">+60m</button>
+              </div>
             </div>
           </div>
 
@@ -123,6 +171,20 @@
           <div class="empty-icon">📝</div>
           <p class="empty-title">No activities found</p>
           <p class="empty-desc">Add a new activity above or change your filters to get started!</p>
+        </div>
+
+        <!-- List Action Bar (Clear completed, Export, Import) -->
+        <div class="list-actions-bar">
+          <div class="action-buttons-left">
+            <button id="clearCompletedBtn" class="text-action-btn">Clear Completed</button>
+          </div>
+          <div class="action-buttons-right">
+            <button id="exportBtn" class="text-action-btn" title="Export activities to JSON">📥 Export</button>
+            <label for="importFileInput" class="text-action-btn" title="Import activities from JSON">
+              📤 Import
+              <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+            </label>
+          </div>
         </div>
       </section>
     </main>

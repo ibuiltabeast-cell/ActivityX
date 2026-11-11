@@ -1,0 +1,20 @@
+name = "activity-tracker"
+main = "src/worker.js"
+compatibility_date = "2024-11-01"
+
+# Cloudflare Pages Build Output Directory
+pages_build_output_dir = "public"
+
+# Cloudflare Workers Static Assets
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = false
+
+# (Optional) Cloudflare KV for edge cross-device sync
+# To enable edge storage, create a KV namespace:
+#   npx wrangler kv:namespace create ACTIVITIES_KV
+# Then uncomment the lines below and insert your generated id:
+# [[kv_namespaces]]
+# binding = "ACTIVITIES_KV"
+# id = "<YOUR_KV_NAMESPACE_ID>"

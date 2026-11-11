@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <h1>Activity Tracker</h1>
+          <p class="subtitle">Track your daily focus, habits, and tasks</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-btn" title="Toggle Dark/Light Mode">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats Overview -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Logged</span>
+        <span class="stat-value" id="statTotal">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Completed</span>
+        <span class="stat-value" id="statCompleted">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Time</span>
+        <span class="stat-value" id="statTime">0m</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Completion Rate</span>
+        <span class="stat-value" id="statRate">0%</span>
+      </div>
+    </section>
+
+    <!-- Category Distribution Bar -->
+    <section class="card distribution-card">
+      <div class="dist-header">
+        <span class="dist-title">Category Time Breakdown</span>
+        <span id="totalHoursLabel" class="dist-total">0h 0m total</span>
+      </div>
+      <div class="progress-bar-container" id="distributionBar">
+        <!-- Colored progress segments injected via JS -->
+      </div>
+      <div class="category-legend" id="categoryLegend">
+        <!-- Legend items injected via JS -->
+      </div>
+    </section>
+
+    <!-- Focus Timer Widget (Live Stopwatch / Countdown) -->
+    <section class="card timer-card hidden" id="timerSection">
+      <div class="timer-header">
+        <div>
+          <span class="timer-badge">Active Focus Session</span>
+          <h3 id="timerActivityTitle" class="timer-title">Task Name</h3>
+        </div>
+        <button id="timerCloseBtn" class="icon-btn" title="Close timer">&times;</button>
+      </div>
+
+      <div class="timer-display-wrap">
+        <div class="timer-time" id="timerDisplay">25:00</div>
+        <div class="timer-progress-bg">
+          <div class="timer-progress-fill" id="timerProgressFill"></div>
+        </div>
+      </div>
+
+      <div class="timer-controls">
+        <button id="timerStartBtn" class="timer-btn timer-btn-primary">▶ Start</button>
+        <button id="timerResetBtn" class="timer-btn timer-btn-secondary">↺ Reset</button>
+        <button id="timerCompleteBtn" class="timer-btn timer-btn-success">✓ Complete & Log</button>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Activity Creation Form -->
+      <section class="card form-card">
+        <h2>Log New Activity</h2>
+        <form id="activityForm">
+          <div class="form-group">
+            <label for="activityTitle">Activity Name</label>
+            <input 
+              type="text" 
+              id="activityTitle" 
+              placeholder="e.g., Morning Run, Code Review, Read Documentation..." 
+              required 
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="activityCategory">Category</label>
+              <select id="activityCategory">
+                <option value="Work">💼 Work</option>
+                <option value="Fitness">🏃 Fitness</option>
+                <option value="Study">📚 Study</option>
+                <option value="Creative">🎨 Creative</option>
+                <option value="Personal">🌱 Personal</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="activityDuration">Duration (minutes)</label>
+              <div class="duration-input-wrapper">
+                <input 
+                  type="number" 
+                  id="activityDuration" 
+                  min="1" 
+                  max="720" 
+                  placeholder="30" 
+                  value="30"
+                  required 
+                />
+              </div>
+              <div class="duration-chips">
+                <button type="button" class="preset-chip" data-time="15">+15m</button>
+                <button type="button" class="preset-chip" data-time="30">+30m</button>
+                <button type="button" class="preset-chip" data-time="45">+45m</button>
+                <button type="button" class="preset-chip" data-time="60">+60m</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="primary-btn">
+            <span>+ Add Activity</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Activity List Section -->
+      <section class="card list-card">
+        <div class="list-header">
+          <h2>Your Activities</h2>
+          <div class="controls-bar">
+            <!-- Search -->
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search activities..." />
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-group">
+              <button class="filter-chip active" data-filter="all">All</button>
+              <button class="filter-chip" data-filter="active">Pending</button>
+              <button class="filter-chip" data-filter="completed">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Items -->
+        <ul id="activityList" class="activity-list">
+          <!-- Dynamically populated -->
+        </ul>
+
+        <!-- Empty state placeholder -->
+        <div id="emptyState" class="empty-state hidden">
+          <div class="empty-icon">📝</div>
+          <p class="empty-title">No activities found</p>
+          <p class="empty-desc">Add a new activity above or change your filters to get started!</p>
+        </div>
+
+        <!-- List Action Bar (Clear completed, Export, Import) -->
+        <div class="list-actions-bar">
+          <div class="action-buttons-left">
+            <button id="clearCompletedBtn" class="text-action-btn">Clear Completed</button>
+          </div>
+          <div class="action-buttons-right">
+            <button id="exportBtn" class="text-action-btn" title="Export activities to JSON">📥 Export</button>
+            <label for="importFileInput" class="text-action-btn" title="Import activities from JSON">
+              📤 Import
+              <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Data stored locally in your browser &bull; Built with standard HTML, CSS, and Vanilla JS</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
