@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
+
 <body>
   <div class="app-container">
     <!-- Header -->
@@ -93,13 +95,8 @@
         <form id="activityForm">
           <div class="form-group">
             <label for="activityTitle">Activity Name</label>
-            <input 
-              type="text" 
-              id="activityTitle" 
-              placeholder="e.g., Morning Run, Code Review, Read Documentation..." 
-              required 
-              autocomplete="off"
-            />
+            <input type="text" id="activityTitle" placeholder="e.g., Morning Run, Code Review, Read Documentation..."
+              required autocomplete="off" />
           </div>
 
           <div class="form-row">
@@ -117,15 +114,7 @@
             <div class="form-group">
               <label for="activityDuration">Duration (minutes)</label>
               <div class="duration-input-wrapper">
-                <input 
-                  type="number" 
-                  id="activityDuration" 
-                  min="1" 
-                  max="720" 
-                  placeholder="30" 
-                  value="30"
-                  required 
-                />
+                <input type="number" id="activityDuration" min="1" max="720" placeholder="30" value="30" required />
               </div>
               <div class="duration-chips">
                 <button type="button" class="preset-chip" data-time="15">+15m</button>
@@ -191,10 +180,11 @@
 
     <!-- Footer -->
     <footer class="app-footer">
-      <p>Data stored locally in your browser &bull; Built with standard HTML, CSS, and Vanilla JS</p>
+      <p>TECH POWERED
     </footer>
   </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>
