@@ -6,13 +6,12 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "wrangler pages dev public",
-    "dev:worker": "wrangler dev",
-    "deploy": "npm run build && wrangler pages deploy public --project-name=activity-tracker",
-    "deploy:worker": "npm run build && wrangler deploy"
+    "dev": "npx wrangler pages dev public",
+    "dev:worker": "npx wrangler dev --config wrangler.worker.toml",
+    "deploy": "npm run build && npx wrangler pages deploy public --project-name=activity-tracker",
+    "deploy:worker": "npm run build && npx wrangler deploy --config wrangler.worker.toml"
   },
   "devDependencies": {
-    "wrangler": "^3.80.0"
+    "wrangler": "^3.111.0"
   }
 }
-
